@@ -99,7 +99,11 @@ export default function Form() {
 			</label>
 			<label htmlFor="size">
 				What pizza size would you like?
-				<select id="size" name="size" onChange={inputChange}>
+				<select
+					id="size"
+					name="size"
+					value={formState.size}
+					onChange={inputChange}>
 					<option value="small">Small</option>
 					<option value="medium"> Medium</option>
 					<option value="large"> Large</option>
@@ -115,7 +119,7 @@ export default function Form() {
 						<input
 							type="checkbox"
 							name="toppings"
-							value="sausage"
+							value={formState.toppings}
 							onChange={inputChange}
 						/>
 						Sausage
@@ -124,7 +128,7 @@ export default function Form() {
 						<input
 							type="checkbox"
 							name="toppings"
-							value="pepperoni"
+							value={formState.toppings}
 							onChange={inputChange}
 						/>{' '}
 						Pepperoni
@@ -133,7 +137,7 @@ export default function Form() {
 						<input
 							type="checkbox"
 							name="toppings"
-							value="bacon"
+							value={formState.toppings}
 							onChange={inputChange}
 						/>{' '}
 						Bacon
@@ -141,8 +145,8 @@ export default function Form() {
 					<label>
 						<input
 							type="checkbox"
-							name="stoppings"
-							value="ham"
+							name="toppings"
+							value={formState.toppings}
 							onChange={inputChange}
 						/>
 						Ham
@@ -150,7 +154,10 @@ export default function Form() {
 				</p>
 			</fieldset>
 
-			<label htmlFor="instructions" onChange={inputChange}>
+			<label
+				htmlFor="instructions"
+				value={formState.instructions}
+				onChange={inputChange}>
 				Any Special Instructions?
 				<textarea id="instructions" name="instructions" />
 			</label>
