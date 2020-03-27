@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import * as yup from 'yup';
 
 const formSchema = yup.object().shape({
 	name: yup
 		.string()
 		.min(2)
-		.required('Name must be more than 2 characters')
+		.required('Name must be more than 2 characters'),
+	size: yup.string(),
+	toppings: yup.boolean().oneOf([true], 'Choose a topping'),
+	instructions: yup.string()
 });
 
 export default function Form() {
@@ -51,15 +55,51 @@ export default function Form() {
 			});
 	};
 
+	const inputChange = e => {
+		e.persist();
+		const newFormData = {
+			...formState,
+			[e.target.name]:
+				e.target.type === 'checkbox' ? e.target.checked : e.target.value
+		};
+		validateChange(e);
+		setFormState(newFormData);
+	};
+
+	const formSubmit = e => {
+		e.preventDefault();
+		axios
+			.post('https://reqres.in/api/users', formState)
+			.then(response => {
+				setPost(response.data);
+
+				setFormState({
+					name: '',
+					size: '',
+					toppings: '',
+					instructions: ''
+				});
+			})
+			.catch(err => {
+				console.log(err.res);
+			});
+	};
+
 	return (
-		<form>
+		<form onSubmit={formSubmit}>
 			<label htmlFor="name">
 				Name:
-				<input id="name" type="text" name="name" value={formState.name} />
+				<input
+					id="name"
+					type="text"
+					name="name"
+					value={formState.name}
+					onChange={inputChange}
+				/>
 			</label>
 			<label htmlFor="size">
 				What pizza size would you like?
-				<select id="size" name="size">
+				<select id="size" name="size" onChange={inputChange}>
 					<option value="small">Small</option>
 					<option value="medium"> Medium</option>
 					<option value="large"> Large</option>
@@ -72,23 +112,45 @@ export default function Form() {
 
 				<p>
 					<label htmlFor="toppings">
-						<input type="checkbox" name="toppings" value="sausage" /> Sausage
+						<input
+							type="checkbox"
+							name="toppings"
+							value="sausage"
+							onChange={inputChange}
+						/>
+						Sausage
 					</label>
 					<label>
-						<input type="checkbox" name="toppings" value="pepperoni" />{' '}
+						<input
+							type="checkbox"
+							name="toppings"
+							value="pepperoni"
+							onChange={inputChange}
+						/>{' '}
 						Pepperoni
 					</label>
 					<label>
-						<input type="checkbox" name="toppings" value="bacon" /> Bacon
+						<input
+							type="checkbox"
+							name="toppings"
+							value="bacon"
+							onChange={inputChange}
+						/>{' '}
+						Bacon
 					</label>
 					<label>
-						<input type="checkbox" name="stoppings" value="ham" />
+						<input
+							type="checkbox"
+							name="stoppings"
+							value="ham"
+							onChange={inputChange}
+						/>
 						Ham
 					</label>
 				</p>
 			</fieldset>
 
-			<label htmlFor="instructions">
+			<label htmlFor="instructions" onChange={inputChange}>
 				Any Special Instructions?
 				<textarea id="instructions" name="instructions" />
 			</label>
