@@ -24,6 +24,26 @@ export default function Form() {
 					<option value="large"> Large</option>
 					<option value="xlarge"> Extra Large</option>
 				</select>
+				<fieldset>
+					<h3>Choose your toppings</h3>
+
+					<p>
+						<label>
+							<input type="checkbox" name="topping[]" value="cycling" /> Sausage
+						</label>
+						<label>
+							<input type="checkbox" name="topping[]" value="running" />{' '}
+							Pepperoni
+						</label>
+						<label>
+							<input type="checkbox" name="topping[]" value="visit gym" /> Bacon
+						</label>
+						<label>
+							<input type="checkbox" name="stopping[]" value="swimming" />
+							Ham
+						</label>
+					</p>
+				</fieldset>
 			</label>
 		</form>
 	);
