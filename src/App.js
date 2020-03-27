@@ -1,7 +1,6 @@
 import React from 'react';
 import Form from './Form';
 import { Route, Link } from 'react-router-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
 const App = () => {
 	return (
 		<>
