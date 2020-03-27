@@ -6,5 +6,7 @@ describe('Testing our form inputs', function() {
 		cy.get('textarea')
 			.type('Leave at the door')
 			.should('have.value', 'Leave at the door');
+		cy.get('[type="checkbox"]').check();
+		cy.get('button').click();
 	});
 });
