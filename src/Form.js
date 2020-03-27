@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
 
 const formSchema = yup.object().shape({
-	name: yup.string().required('Name is required')
+	name: yup
+		.string()
+		.min(2)
+		.required('Name must be more than 2 characters')
 });
 
 export default function Form() {
@@ -21,6 +24,15 @@ export default function Form() {
 		instructions: ''
 	});
 	const [buttonDisabled, setButtonDisabled] = useState(true);
+	// database state
+	const [post, setPost] = useState([]);
+
+	useEffect(() => {
+		formSchema.isValid(formState).then(valid => {
+			setButtonDisabled(!valid);
+		});
+	}, [formState]);
+
 	return (
 		<form>
 			<label htmlFor="name">
