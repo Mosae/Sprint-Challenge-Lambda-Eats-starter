@@ -3,7 +3,10 @@ import React, { useState, useEffect } from 'react';
 export default function Form() {
 	return (
 		<form>
-			<label>yoo</label>
+			<label htmlFor="name">
+				Name:
+				<input type="text" name="name" />
+			</label>
 		</form>
 	);
 }
