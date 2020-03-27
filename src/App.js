@@ -1,12 +1,18 @@
 import React from 'react';
 import Form from './Form';
-import { Route } from 'react-router-dom';
-
+import { Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 const App = () => {
 	return (
 		<>
 			<h1>Lambda Eats</h1>
+
 			<Route exact path="/">
+				<br />
+				<Link to="/pizza">Form</Link>
+			</Route>
+
+			<Route path="/pizza">
 				<Form />
 			</Route>
 		</>
