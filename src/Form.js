@@ -7,7 +7,9 @@ const formSchema = yup.object().shape({
 
 export default function Form() {
 	const [formState, setFormState] = useState({
-		name: ''
+		name: '',
+		size: '',
+		instructions: ''
 	});
 	return (
 		<form>
@@ -15,9 +17,9 @@ export default function Form() {
 				Name:
 				<input id="name" type="text" name="name" />
 			</label>
-			<label htmlFor="pizza-size">
+			<label htmlFor="size">
 				What pizza size would you like?
-				<select id="pizza-size" name="pizza-size">
+				<select id="size" name="size">
 					<option value="small">Small</option>
 					<option value="medium"> Medium</option>
 					<option value="large"> Large</option>
@@ -29,17 +31,18 @@ export default function Form() {
 				<h3>Choose your toppings</h3>
 
 				<p>
-					<label>
-						<input type="checkbox" name="topping[]" value="cycling" /> Sausage
+					<label htmlFor="toppings">
+						<input type="checkbox" name="toppings" value="sausage" /> Sausage
 					</label>
 					<label>
-						<input type="checkbox" name="topping[]" value="running" /> Pepperoni
+						<input type="checkbox" name="toppings" value="pepperoni" />{' '}
+						Pepperoni
 					</label>
 					<label>
-						<input type="checkbox" name="topping[]" value="visit gym" /> Bacon
+						<input type="checkbox" name="toppings" value="bacon" /> Bacon
 					</label>
 					<label>
-						<input type="checkbox" name="stopping[]" value="swimming" />
+						<input type="checkbox" name="stoppings" value="ham" />
 						Ham
 					</label>
 				</p>
@@ -49,6 +52,8 @@ export default function Form() {
 				Any Special Instructions?
 				<textarea id="instructions" name="instructions" />
 			</label>
+
+			<button>Order!</button>
 		</form>
 	);
 }
