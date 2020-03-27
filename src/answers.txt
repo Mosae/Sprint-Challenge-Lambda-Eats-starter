@@ -1,0 +1,3 @@
+1. useRouteMatch provides access to the match property without rendering the <Route> component. It matches the URL and takes in exact , strict, path and sensitive options like the Route does  
+2. Form validation is making sure that a user inputs the correct type of data in a form. If the data is incorrect then we need to alert them. E.g when a user just types in a name instead of a email address. We would need to tell them that a valid email is required.
+3. End to end testing is an automated test that looks at how a user would progress through the UI. It mimics what the user would do to complete a task. 
