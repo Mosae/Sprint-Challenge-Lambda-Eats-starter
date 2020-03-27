@@ -6,11 +6,21 @@ const formSchema = yup.object().shape({
 });
 
 export default function Form() {
+	//form state
 	const [formState, setFormState] = useState({
 		name: '',
 		size: '',
+		toppings: '',
 		instructions: ''
 	});
+	//error state
+	const [error, setError] = useState({
+		name: '',
+		size: '',
+		toppings: '',
+		instructions: ''
+	});
+	const [buttonDisabled, setButtonDisabled] = useState(true);
 	return (
 		<form>
 			<label htmlFor="name">
@@ -53,7 +63,7 @@ export default function Form() {
 				<textarea id="instructions" name="instructions" />
 			</label>
 
-			<button>Order!</button>
+			<button disabled={buttonDisabled}>Order!</button>
 		</form>
 	);
 }
