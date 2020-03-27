@@ -96,6 +96,7 @@ export default function Form() {
 					value={formState.name}
 					onChange={inputChange}
 				/>
+				{errors.name.length > 0 ? <p className="error">{errors.name}</p> : null}
 			</label>
 			<label htmlFor="size">
 				What pizza size would you like?
@@ -161,7 +162,7 @@ export default function Form() {
 				Any Special Instructions?
 				<textarea id="instructions" name="instructions" />
 			</label>
-
+			<pre>{JSON.stringify(post, null, 2)}</pre>
 			<button disabled={buttonDisabled}>Order!</button>
 		</form>
 	);
